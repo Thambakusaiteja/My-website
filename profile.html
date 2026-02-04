@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thambaku Sai Teja | Photofolio</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root{
+      --bg: #0f172a;
+      --card: #020617;
+      --muted: #94a3b8;
+      --accent: #6366f1;
+      --glass: rgba(255,255,255,0.04);
+      --radius: 1rem;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif;scroll-behavior:smooth}
+    body{background:var(--bg);color:#e6eef8;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+
+    /* NAVBAR */
+    nav{position:fixed;top:0;width:100%;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);display:flex;justify-content:center;gap:2rem;padding:1rem;z-index:100}
+    nav a{padding:.4rem .6rem;border-radius:.5rem;transition:all .18s}
+    nav a:hover{color:var(--accent);transform:translateY(-2px)}
+
+    /* layout container */
+    .container{max-width:1200px;margin:0 auto;padding:0 1.5rem;position:relative}
+
+    /* HERO */
+    header{min-height:70vh;display:flex;align-items:center;padding:6rem 0;position:relative}
+    .hero{display:grid;grid-template-columns:1fr;gap:2.5rem;align-items:center}
+    .hero-left{text-align:left;padding-right:560px}
+    header h1{font-size:2.4rem;line-height:1.05;margin-bottom:.4rem}
+    header h2{color:var(--accent);font-size:1.15rem;margin-bottom:.6rem}
+    header p{color:#cbd5f5;margin-bottom:1rem;max-width:48ch}
+
+    .hero-cta{display:flex;gap:.75rem;align-items:center}
+    .btn{display:inline-block;padding:.65rem 1.25rem;background:var(--accent);color:white;border-radius:999px;border:none;cursor:pointer;box-shadow:0 6px 18px rgba(99,102,241,0.18);transition:transform .18s,box-shadow .18s}
+    .btn:hover{transform:translateY(-4px)}
+    .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#cbd5f5}
+
+    .quick-skills{margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap}
+    .skill-badge{background:var(--glass);padding:.35rem .6rem;border-radius:999px;font-size:.85rem;color:var(--muted)}
+
+    /* profile card (corner) */
+    .profile-card{position:absolute;top:2.5rem;right:2rem;width:320px;max-width:38vw;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:1.25rem;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.03);text-align:center;box-shadow:0 18px 40px rgba(2,6,23,0.6)}
+    .profile-card img{width:120px;height:120px;object-fit:cover;border-radius:50%;box-shadow:0 10px 36px rgba(2,6,23,0.7);border:4px solid rgba(255,255,255,0.03)}
+    .profile-card h3{margin-top:.65rem;margin-bottom:.25rem}
+    .profile-card .muted{color:var(--muted);font-size:.92rem}
+    .socials{margin-top:.7rem;display:flex;gap:.6rem;justify-content:center}
+    .socials a{color:var(--muted);padding:.5rem;border-radius:.45rem;background:transparent;transition:all .15s}
+    .socials a:hover{color:var(--accent);transform:translateY(-3px)}
+
+    /* ABOUT & SKILLS */
+    section#about{padding-top:3rem}
+    .about-grid{display:grid;grid-template-columns:1fr 310px;gap:2rem;align-items:start}
+    .about p{color:#cbd5f5;margin-bottom:.5rem}
+
+    .skills .skill{margin-bottom:1rem}
+    .skill-label{display:flex;justify-content:space-between;font-size:.95rem;color:var(--muted);margin-bottom:.35rem}
+    .skill-bar{background:rgba(255,255,255,0.03);height:10px;border-radius:999px;overflow:hidden}
+    .skill-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#8b5cf6);border-radius:999px;transition:width 1.2s ease}
+
+    /* PROJECTS */
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+    .card{background:var(--card);padding:1.25rem;border-radius:1rem;border:1px solid rgba(255,255,255,0.03);transition:transform .22s,box-shadow .22s}
+    .card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(2,6,23,0.65)}
+    .card h3{margin-bottom:.6rem}
+    .card p{color:#cbd5f5;margin-bottom:.9rem}
+    .card .card-actions{display:flex;gap:.5rem}
+    .card .action{padding:.5rem .6rem;border-radius:.6rem;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:600;transition:all .12s}
+    .card .action:hover{background:rgba(99,102,241,0.12);color:var(--accent)}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:360px 1fr;gap:1.5rem;align-items:start}
+    .contact-cards{display:flex;flex-direction:column;gap:.7rem}
+    .contact-card{display:flex;gap:.75rem;align-items:center;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);padding:.8rem;border-radius:.9rem;border:1px solid rgba(255,255,255,0.03)}
+    .contact-card i{color:var(--accent);font-size:1.1rem}
+    .contact-card a{display:block;color:#cbd5f5}
+
+    .contact-form label{display:block;margin-bottom:.75rem;font-size:.9rem;color:var(--muted)}
+    .contact-form input,.contact-form textarea{width:100%;background:transparent;border:1px solid rgba(255,255,255,0.04);padding:.6rem;border-radius:.6rem;color:#e6eef8}
+    .form-msg{margin-top:.5rem;color:var(--muted)}
+
+    footer{margin-top:3rem;text-align:center;padding:2rem;background:var(--card);color:var(--muted);border-top:1px solid rgba(255,255,255,0.02)}
+
+    /* small misc */
+    .muted{color:var(--muted)}
+
+    @media (max-width:900px){
+      .hero, .about-grid, .contact-grid{grid-template-columns:1fr}
+      header{padding:4rem 0}
+      .profile-card{position:static;margin:0 auto;max-width:360px;width:100%}
+      .hero-left{padding-right:0}
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- HOME -->
+<header id="home">
+  <div class="container">
+    <div class="hero">
+      <div class="hero-left">
+        <h1>Welcome To My World 👋</h1>
+        <h2>Thambaku Sai Teja — Web Developer</h2>
+        <p>Student | Developer | Tech Enthusiast. I build clean, responsive web applications and love solving algorithms.</p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn">View My Work</a>
+          <a href="#contact" class="btn btn-outline">Contact Me</a>
+        </div>
+        <div class="quick-skills" aria-hidden="true">
+          <span class="skill-badge">HTML</span>
+          <span class="skill-badge">CSS</span>
+          <span class="skill-badge">JavaScript</span>
+          <span class="skill-badge">Python</span>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="profile-card">
+          <img src="Teja.png" alt="Thambaku Sai Teja">
+          <h3>Thambaku Sai Teja</h3>
+          <p class="muted">Student · Developer</p>
+          <div class="socials">
+            <a href="https://github.com/Thambakusaiteja" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/thambaku-sai-teja" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT & SKILLS -->
+<section id="about">
+  <div class="container">
+    <h2>About & Skills</h2>
+    <div class="about-grid">
+      <div class="about">
+        <p>Hello! I'm Sai Teja — I build modern web apps and focus on clean code, performance and accessible interfaces.</p>
+        <p>I'm passionate about frontend engineering, problem solving and open-source collaboration. My projects focus on usability and performance.</p>
+      </div>
+      <div class="skills">
+        <div class="skill">
+          <div class="skill-label"><span>HTML & CSS</span><span class="skill-percent">90%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-fill="90"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-label"><span>JavaScript</span><span class="skill-percent">85%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-fill="85"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-label"><span>Python</span><span class="skill-percent">75%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-fill="75"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-label"><span>Git & GitHub</span><span class="skill-percent">80%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-fill="80"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <h2>Projects</h2>
+
+    <div class="projects">
+
+      <!-- PROJECT 1 -->
+      <a href="https://github.com/Thambakusaiteja/AI-Based-Automated-Content-Marketing-Optimize" target="_blank">
+        <div class="card">
+          <h3>🚀 AI Content Marketing Optimizer</h3>
+          <p>AI tool to optimize marketing content.</p>
+          <p><i class="fa-brands fa-github"></i> Live Project</p>
+        </div>
+      </a>
+
+      <!-- PROJECT 2 -->
+      <a href="https://github.com/Thambakusaiteja/tasktrack.git" target="_blank">
+        <div class="card">
+          <h3>Tasktrack</h3>
+          <p>Simple task manager using JavaScript.</p>
+          <p><i class="fa-brands fa-github"></i> GitHub Code</p>
+        </div>
+      </a>
+
+      <!-- PROJECT 3 -->
+      <a href="https://thambakusaiteja.github.io/weather-app/" target="_blank">
+        <div class="card">
+          <h3>☁️ Weather App</h3>
+          <p>Weather info using API.</p>
+          <p><i class="fa-solid fa-link"></i> Live Demo</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="container">
+    <h2>Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-cards">
+        <div class="contact-card">
+          <i class="fa-solid fa-phone"></i>
+          <div><strong>Phone</strong><a href="tel:+918374197227">+91 8374197227</a></div>
+        </div>
+        <div class="contact-card">
+          <i class="fa-solid fa-envelope"></i>
+          <div><strong>Email</strong><a href="mailto:tejasai6655@gmail.com">tejasai6655@gmail.com</a></div>
+        </div>
+        <div class="contact-card">
+          <i class="fa-brands fa-github"></i>
+          <div><strong>GitHub</strong><a href="https://github.com/Thambakusaiteja" target="_blank">github.com/Thambakusaiteja</a></div>
+        </div>
+      </div>
+
+      <form id="contactForm" class="contact-form" onsubmit="return submitForm(event)" novalidate>
+        <label><span>Name</span><input type="text" name="name" required></label>
+        <label><span>Email</span><input type="email" name="email" required></label>
+        <label><span>Message</span><textarea name="message" rows="4" required></textarea></label>
+        <button type="submit" class="btn">Send Message</button>
+        <p id="formMsg" aria-live="polite" class="form-msg"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="container">© <span id="year"></span> Thambaku Sai Teja. All rights reserved.</div>
+</footer>
+
+<script>
+  // Set current year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Animate skill bars when they enter the viewport
+  const skills = document.querySelectorAll('.skill-fill');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const fill = el.dataset.fill || '70';
+        el.style.width = fill + '%';
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  skills.forEach(s => observer.observe(s));
+
+  // Simple contact form handler — opens user's mail client as a friendly fallback
+  function submitForm(e){
+    e.preventDefault();
+    const form = document.getElementById('contactForm');
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+    const msgEl = document.getElementById('formMsg');
+    if(!name || !email || !message){
+      msgEl.textContent = 'Please complete all fields.';
+      return false;
+    }
+    const subject = encodeURIComponent('Contact from website: ' + name);
+    const body = encodeURIComponent(message + '\n\n— ' + name + '\n' + email);
+    window.location.href = `mailto:tejasai6655@gmail.com?subject=${subject}&body=${body}`;
+    msgEl.textContent = 'Opening your email client...';
+    form.reset();
+    return false;
+  }
+</script>
+
+</body>
+</html>
